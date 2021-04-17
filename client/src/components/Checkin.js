@@ -46,11 +46,11 @@ console.log(value2)
                     value ={value2.reqReturnDate}
                     />
                 </div>
-                <button
+                {/* <button
                     type="submit"
                 >
                     Checkout
-                </button> 
+                </button>  */}
                 
             </div>
                                
