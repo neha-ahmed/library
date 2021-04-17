@@ -33,6 +33,7 @@ exports.store = async function (req, res) {
         const borrowid = newBorrowDetails.id;
         //console.log(borrowid)
         const borrow = await BorrowDetails.findById(borrowid).populate('bookID')
+        
         const bookid = borrow.bookID.id;
         const book= await Book.findByIdAndUpdate(bookid,
             { $set:{status: "not available" }, $push:{borrowDetailsID: borrowid}},

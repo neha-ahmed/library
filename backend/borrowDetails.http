@@ -3,13 +3,12 @@ POST http://localhost:4000/borrowDetails/addtodb/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "fullName": "uzma Shahid",
+    "fullName": "uzma kareem",
     "phone": "03-303-2321",
     "nationalID": "4250145596072",
-    "bookID": "6079b5897f51ed39f8e58b62",
-    "reqReturnDate": "5/2/2021Z"
+    "bookID": "6079b5457f51ed39f8e58b61"
 }
 
 
-###GET API
-GET http://localhost:4000/borrowDetails/6079b5897f51ed39f8e58b62sxs
+###GET API --CHECK IN
+GET http://localhost:4000/borrowDetails/6079b5457f51ed39f8e58b61

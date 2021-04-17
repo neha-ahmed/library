@@ -32,6 +32,8 @@ const BorrowDetailsSchema = new Schema({
   },
   reqReturnDate :{
     type: Date,
+    default: +new Date() + 15*24*60*60*1000
+    
   }
   
 

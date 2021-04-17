@@ -12,7 +12,8 @@ import { Button } from '@material-ui/core';
 import { RadioGroup, Radio } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
+// import FormLabel from '@material-ui/core/FormLabel';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     table: {
@@ -24,14 +25,16 @@ const useStyles = makeStyles({
 function BasicTable() {
     const classes = useStyles();
     const [value, setValue] = useState([]);
-    
+  
+
     const fetchData = async () => {
-        const result = await axios(
+        const result = await axios.get(
             'http://localhost:4000/book',
         );
         setValue(result.data.books)
     }
 
+    
     useEffect(() => {
 
         fetchData()
@@ -80,14 +83,19 @@ function BasicTable() {
                                             </Button>
                                         </TableCell>
                                         <TableCell align="right">
-                                            <Button variant="contained" color="primary">
+                                           
+                                        <Link to={`/checkin/${data._id}`}>
+                                            <Button variant="contained" color="primary" disabled={data.status === "available" ? true: false}>
                                                 Checkin
                                             </Button>
+                                        </Link>
                                         </TableCell>
                                         <TableCell align="right">
-                                            <Button variant="contained" color="primary">
+                                            <Link to={`/checkout/${data._id}`}>
+                                            <Button variant="contained" color="primary" disabled={data.status === "available" ? false: true} >
                                                 Checkout
                                             </Button>
+                                            </Link>
                                         </TableCell>
                                     </TableRow>
                                 );
