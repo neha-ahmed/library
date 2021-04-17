@@ -2,9 +2,21 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const BorrowDetailsSchema = new Schema({
-  userID: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Users",
+  fullName: {
+    type: String,
+    required: true,
+  },
+  
+  phone: {
+    type: String,
+    required: true,
+    // match:  /\d{2}-\d{3}-\d{4}/
+     
+  },
+  nationalID: {
+    type: Number,
+    required: true,
+    maxlength: 11,
   },
   bookID: {
     type: mongoose.Schema.Types.ObjectId,
@@ -16,9 +28,13 @@ const BorrowDetailsSchema = new Schema({
   },
   returnDate: {
     type: Date,
+    default: null,
   },
+  reqReturnDate :{
+    type: Date,
+  }
   
 
 });
 
-module.exports = mongoose.model("Users", UserSchema);
+module.exports = mongoose.model("BorrowDetails", BorrowDetailsSchema);

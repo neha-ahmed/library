@@ -9,4 +9,9 @@ const router = express.Router();
 //@creates new librarian
 router.post("/addtodb", Librarian.store);
 
+
+//@POST
+//@creates new librarian
+router.post("/login", Librarian.login);
+
 module.exports = router;

@@ -21,7 +21,11 @@ const BookSchema = new Schema({
   status:{
       type: String,
       required: true,
-  }
+  },
+  borrowDetailsID: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "BorrowDetails",
+  }],
   
 
 });

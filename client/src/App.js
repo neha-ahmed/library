@@ -1,49 +1,20 @@
-import React, { useState, Component } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import LoginForm from './components/LoginForm';
+import homepage from "./components/homepage";
+function App() {
 
-function App (){
-  const adminUser={
-    fullName:"admin",
-    username:"admin",
-    password: "admin123"
-  }
 
-   const [user, setUser] = useState({fullName:"", username:""});
-   const [error, setError] =useState("");
 
-   const Login = details =>{
-     console.log(details);
-     if (details.username == adminUser.username && details.password == adminUser.password){
-      console.log("logged in");
-      setUser({
-        fullName: details.fullName,
-        username:details.username
-      })
-     }
-   else {
-    
-     console.log("details do not match");
-     setError("details do not match");
-   }
-  }
-
-   const Logout = () => {
-     console.log("logout");
-     setUser({fullName:"", username:""})
-   }
-  return(
+  return (
     <div className="App">
-      {(user.fullName!= "") ? (
-        <div className='welcome'>
-          <h2> Welcome, <span>  {user.fullName}</span></h2>
-          <button onClick={Logout}>Log out</button>
-        </div>
-      ):(
-        <LoginForm Login={Login} error={error}/>
-      )}
-
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={LoginForm} />
+          <Route exact path="/admin" component={homepage} />
+        </Switch>
+      </BrowserRouter>
     </div>
   )
 }

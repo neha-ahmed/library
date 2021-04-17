@@ -1,49 +1,86 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+function LoginForm(props) {
+    const [loading, setLoading] = useState(false);
+    const email = useFormInput("");
+    const password = useFormInput("");
+    const handleLogin = () => {
+        
+        setLoading(true);
+        axios
+            .post("http://localhost:4000/librarian/login", {
 
-function LoginForm({ Login,error}){
-    const [details, setDetails] = useState({fullName:'', username:'', password:''});
+                email: email.value,
+                password: password.value,
 
-    const submitHandler = e => {
-        e.preventDefault();
-        Login(details);
-    }
-    return(
-        <form onSubmit={submitHandler}>
+            })
+            .then((response) => {
+                setLoading(false);
+                console.log("ASASDASD", response.data)
+                props.history.push(
+                    "/admin"
+                );
+
+            }
+
+            )
+            .catch((error) => {
+                setLoading(false);
+
+                console.log("Something went wrong. Please try again later.");
+            });
+    };
+
+    return (
+        <form  >
             <div className="form-inner">
                 <h2>Login</h2>
-                {(error != "") ? (<div className="error">{error}</div>) : ""}
+
                 <div className="form-group">
-                    <label htmlFor="name">Full Name</label>    
-                    <input type='text'
-                    name='Full Name'
-                    id='Full Name'
-                    onChange={e => setDetails({...details, fullName: e.target.value})}
-                    value={details.fullName}
+                    <label htmlFor="name">Email</label>
+                    <input
+                        className="input100"
+                        name="email"
+                        placeholder="Email"
+                        type="text"
+                        {...email}
+                        autoComplete="new-password"
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="name">Username</label>    
-                    <input type='text'
-                    name='username'
-                    id='username'
-                    onChange={e => setDetails({...details, username: e.target.value})}
-                    value={details.username}
+                    <label htmlFor="name">Password</label>
+                    <input
+                        className="input100"
+                        name="pass"
+                        placeholder="Password"
+                        type="password"
+                        {...password}
+                        autoComplete="new-password"
                     />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="name">Password</label>    
-                    <input type='text'
-                    name='password'
-                    id='password'
-                    onChange={e => setDetails({...details, password: e.target.value})}
-                    value={details.password}
-                    />
-                </div>
-                <input type='submit' className='btn btn-danger btn-block' value='submit' />
+                <button
+                    className="login100-form-btn"
+                    value={loading ? "Loading..." : "Login"}
+                    onClick={handleLogin}
+                    disabled={loading}
+                >
+                    Login
+                </button>
             </div>
 
         </form>
     )
 }
+const useFormInput = (initialValue) => {
+    const [value, setValue] = useState(initialValue);
+
+    const handleChange = (e) => {
+        setValue(e.target.value);
+    };
+    return {
+        value,
+        onChange: handleChange,
+    };
+};
 
 export default LoginForm
