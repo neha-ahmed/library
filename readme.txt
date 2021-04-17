@@ -10,3 +10,7 @@ to run server --> npm run start
 to run client --> npm start, localhost:4000/
 
 for log in --- email: neha@gmail.com, password: neha
+
+check in and check out working
+backend apis complete
+frontend details page not made only
