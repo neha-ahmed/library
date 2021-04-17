@@ -22,12 +22,15 @@ const useStyles = makeStyles({
 
 
 function BasicTable() {
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    id = url.searchParams.get("id");
+    
     const classes = useStyles();
     const [value, setValue] = useState([]);
-    
     const fetchData = async () => {
         const result = await axios(
-            'http://localhost:4000/book',
+            `http://localhost:4000/book/details/${id}`,
         );
         setValue(result.data.books)
     }

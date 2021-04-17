@@ -1,7 +1,6 @@
 const BorrowDetails = require('../models/borrowDetails');
 const Book = require('../models/books');
 
-
 //@route POST borrowDetails/ check-out
 //@desc Add new borrow details and updates book status to not available
 //@access public access
@@ -35,8 +34,6 @@ exports.store = async function (req, res) {
         //console.log(borrowid)
         const borrow = await BorrowDetails.findById(borrowid).populate('bookID')
         const bookid = borrow.bookID.id;
-        //console.log("dsfdf", bookid)
-
         const book= await Book.findByIdAndUpdate(bookid,
             { $set:{status: "not available" }, $push:{borrowDetailsID: borrowid}},
             { new: true }

@@ -16,7 +16,7 @@ function LoginForm(props) {
             })
             .then((response) => {
                 setLoading(false);
-                console.log("ASASDASD", response.data)
+                console.log("response", response.data)
                 props.history.push(
                     "/admin"
                 );
@@ -39,19 +39,19 @@ function LoginForm(props) {
                 <div className="form-group">
                     <label htmlFor="name">Email</label>
                     <input
-                        className="input100"
+                        id="email"
                         name="email"
                         placeholder="Email"
                         type="text"
                         {...email}
-                        autoComplete="new-password"
+                       
                     />
                 </div>
                 <div className="form-group">
                     <label htmlFor="name">Password</label>
                     <input
-                        className="input100"
-                        name="pass"
+                        id="password"
+                        name="password"
                         placeholder="Password"
                         type="password"
                         {...password}
@@ -59,7 +59,8 @@ function LoginForm(props) {
                     />
                 </div>
                 <button
-                    className="login100-form-btn"
+                    
+                    type="submit"
                     value={loading ? "Loading..." : "Login"}
                     onClick={handleLogin}
                     disabled={loading}

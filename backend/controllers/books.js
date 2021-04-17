@@ -43,3 +43,17 @@ exports.list = async function (req, res) {
     }
   };
 
+// @route GET one book
+// @desc Returns all books on homepage
+// @access Public
+exports.details = async function (req, res) {
+  try {
+    let bookid = req.params.id;
+    console.log(bookid)
+    const book = await Books.findById(bookid).populate('borrowDetailsID')
+   console.log(book)
+    res.status(200).json({ book });
+  } catch (err) {
+    return res.status(500).json({ error: "Internal Server Error." });
+  }
+};

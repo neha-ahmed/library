@@ -11,7 +11,7 @@ router.post("/addtodb", Librarian.store);
 
 
 //@POST
-//@creates new librarian
+//@for log in
 router.post("/login", Librarian.login);
 
 module.exports = router;

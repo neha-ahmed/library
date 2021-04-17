@@ -4,8 +4,8 @@ Content-Type: application/json
 
 {
     "fullName": "Shahzaib Saleem",
-    "email":"emad123@outlook.com",
-    "password":"123123"
+    "email":"shahzu@gmail.com",
+    "password":"shahzu"
 }
 
 
@@ -14,6 +14,6 @@ POST http://localhost:4000/librarian/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "email":"emad123@outlook.com",
-    "password":"123123"
+    "email":"shahzu@gmail.com",
+    "password":"shahzu"
 }

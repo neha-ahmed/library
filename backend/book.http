@@ -11,5 +11,8 @@ Content-Type: application/json
 }
 
 
-###GET API / CHECK IN
+###GET API 
 GET http://localhost:4000/book/
+
+###GET API / for 1 book details
+GET http://localhost:4000/book/details/6079b5457f51ed39f8e58b61
